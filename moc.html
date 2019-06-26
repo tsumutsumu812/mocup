@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +21,6 @@
         href="https://rawgit.com/tempusdominus/bootstrap-4/master/build/css/tempusdominus-bootstrap-4.css">
     <script src="https://rawgit.com/tempusdominus/bootstrap-4/master/build/js/tempusdominus-bootstrap-4.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 
     <title>warranty</title>
 </head>
@@ -30,13 +28,14 @@
     .navbar-brand{
         font-family: 'Noto Serif', serif;
     }
+    .navbar-nav{
+        margin-left:10px;
+    }
     h3{
         text-align: center;
-        margin:65px 0 15px 0;
+        margin:55px 0 15px 0;
+        padding-top:10px;
         font-family: 'Noto Serif', serif;
-    };
-    #app{
-        
     }
     .range{
         border:2px solid #5f5f5f;
@@ -63,7 +62,7 @@
     .main{
         margin-top:50px;
         margin-bottom:20px;
-        background-color:rgb(248, 248, 248);
+        background-color:rgb(247, 247, 247);
     }
     .form-control{
         border:2px solid rgb(199, 199, 199);
@@ -97,7 +96,7 @@
     }
 </style>
 <body>
-    <div id="app">
+    <!-- 上部のメニューバー -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class= "navbar-brand" href="">WarrantySystem</a>
         <button class ="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -113,14 +112,20 @@
             </ul>
         </div>
     </nav>
+
+    <!-- メインボディ -->
     <div class="main">
+        <!-- タイトル -->
         <h3>Warranty Request</h3>
+        <!-- 入力フォーム -->
         <div id="form_range">
             <form>
                 <div class="range range-first">
+                    <!-- 大項目 -->
                     <div class="title title_first">
                         <h4>Claim Header</h4>
                     </div>
+                    <!-- 各入力フォーム -->
                     <div class="contents">
                         <div class="form-row">
                             <div class="col-5">
@@ -141,15 +146,14 @@
                                 <div class="form-group">
                                     <label for="status">Status：</label>
                                     <select class="form-control" id ="status" >
-                                        <option selected>Please select</option>
-                                        <option>Paid</option>
-                                        <option>Unpaid</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="range">
                     <div class="title">
                         <h4>Product Information</h4>
@@ -194,13 +198,14 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-5">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="application">Application：</label>
-                                    <input type="text" class="form-control" id="application">
+                                    <select id="application" class="form-control">
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-2 offset-2">
+                            <div class="col-2 offset-4">
                                 <div class="form-group">
                                     <label for="">Repaire Date：</label>
                                     <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
@@ -214,6 +219,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="range">
                     <div class="title">
                         <h4>Distributor＆Dealer Information</h4>
@@ -235,6 +242,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="range">
                     <div class="title">
                         <h4>Failure Information</h4>
@@ -251,10 +260,6 @@
                                 <div class="form-group">
                                     <label for="when">when：</label>
                                     <select class="form-control" id ="when" >
-                                        <div v-for ="value in when_select">
-                                        <option selected>Please select</option>
-                                        <option>{{value}}</option>
-                                        </div>
                                     </select>
                                 </div>
                             </div>
@@ -271,8 +276,6 @@
                                     <label for="symptom">Symptom：</label>
                                     <select class="form-control" id ="symptom" >
                                         <option selected>Please select</option>
-                                        <option>Paid</option>
-                                        <option>Unpaid</option>
                                     </select>
                                 </div>
                             </div>
@@ -288,9 +291,6 @@
                                 <div class="form-group">
                                     <label for="defect">Defect：</label>
                                     <select class="form-control" id ="defect" >
-                                        <option selected>Please select</option>
-                                        <option>Paid</option>
-                                        <option>Unpaid</option>
                                     </select>
                                 </div>
                             </div>
@@ -300,15 +300,14 @@
                                 <div class="form-group">
                                     <label for="cost">Claimed cost：</label>
                                     <select class="form-control" id ="cost" >
-                                        <option selected>Please select</option>
-                                        <option>Paid</option>
-                                        <option>Unpaid</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="range">
                     <div class="title">
                         <h4>Part Information</h4>
@@ -359,7 +358,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div>
+                    <!-- 確認ボタン -->
                     <div class="btn_wrapper">
                        <button type="submit" class="btn btn-info btn_margin" id = "submit_btn">Confirm</button> 
                     </div>
@@ -367,74 +368,124 @@
             </form>
         </div>
     </div>
-    </div>
-    <div id="modal">
-        
-    </div>
     <script type="text/javascript">
-        $(function() {
-            $('#submit_btn').click(function(){
-                $('#modal').fadeIn();
-            });
-            $('#datetimepicker1,#datetimepicker2,#datetimepicker3').datetimepicker({
-                dayViewHeaderFormat: 'YYYY MMMM',
-                tooltips: {
-                    close: '閉じる',
-                    selectMonth: '月を選択',
-                    prevMonth: '前月',
-                    nextMonth: '次月',
-                    selectYear: '年を選択',
-                    prevYear: '前年',
-                    nextYear: '次年',
-                    selectTime: '時間を選択',
-                    selectDate: '日付を選択',
-                    prevDecade: '前期間',
-                    nextDecade: '次期間',
-                    selectDecade: '期間を選択',
-                    prevCentury: '前世紀',
-                    nextCentury: '次世紀'
-                },
-                format: 'YYYY/MM/DD',
-                locale: 'en',
-                showClose: true
-            });
+        //日付表示
+        $('#datetimepicker1,#datetimepicker2,#datetimepicker3').datetimepicker({
+            dayViewHeaderFormat: 'YYYY MMMM',
+            format: 'YYYY/MM/DD',
+            locale: 'en',
+            showClose: true
         });
-    </script>
-    
-    <script>
-        var app = new Vue({
-            el:"#app",
-            data:{
-                when_select:[
-                    "A. Before use",
-                    "B. Cold start ",
-                    "C. In use",
-                    "D. Re-start after refueling",
-                    "E. Hot start",
-                    "F. No data"
-                ],
-                symptom_select:[
-                    "01. Hard starting ",
-                    "02. Unstable high speed ",
-                    "03. Unstable idling",
-                    "04. Poor acceleration",
-                    "05. ---",
-                    "06. Engine/Product stop",
-                    "07. Hard action",
-                    "08. Leak",
-                    "09. Abnormal vibration",
-                    "10. Abnormal noise",
-                    "11. Overheat",
-                    "12. Defective discharge",
-                    "13. Hard to assemble",
-                    "14. Came loose",
-                    "15. Other",
-                ],
-                defect_select:[
-    
-                ]
-            }
-        })
+
+        //プルダウンの選択肢を取得
+        var status_select = [
+            "Please choose",
+            "paid",
+            "unpaid"
+        ];
+        for(var i=0;i<status_select.length;i++){
+            let op1 = document.createElement("option");
+            op1.text = status_select[i];  
+            document.getElementById("status").appendChild(op1);
+        }
+
+        var application_select = [
+            "01. Consumer Use",
+            "02. Commercial, Non-consumer Use",
+            "03. Hire or Rental" 
+        ]
+        for(var i=0;i<application_select.length;i++){
+            let op2 = document.createElement("option")
+            op2.text = application_select[i];
+            document.getElementById("application").appendChild(op2);
+        }
+
+        var when_select = [
+            "Please choose",
+            "A. Before use",
+            "B. Cold start ",
+            "C. In use",
+            "D. Re-start after refueling",
+            "E. Hot start",
+            "F. No data"
+        ];
+        for(var i=0;i<when_select.length;i++){
+        let op3 = document.createElement("option");
+        op3.text = when_select[i];  
+        document.getElementById("when").appendChild(op3);
+        }
+
+        var symptom_select = [
+            "Please choose",
+            "01. Hard starting ",
+            "02. Unstable high speed ",
+            "03. Unstable idling",
+            "04. Poor acceleration",
+            "05. ---",
+            "06. Engine/Product stop",
+            "07. Hard action",
+            "08. Leak",
+            "09. Abnormal vibration",
+            "10. Abnormal noise",
+            "11. Overheat",
+            "12. Defective discharge",
+            "13. Hard to assemble",
+            "14. Came loose",
+            "15. Other",
+        ];
+        for(var i=0;i<symptom_select.length;i++){
+        let op4 = document.createElement("option");
+        op4.text = symptom_select[i]; 
+        document.getElementById("symptom").appendChild(op4);
+        }
+
+        var defect_select = [
+            "Please choose",
+            "100. Broken",
+            "103. Damage",
+            "106. Screw thread broken",
+            "107. Crack",
+            "121. Deformed",
+            "131. Melt",
+            "132. Pinhole",
+            "133. Blocking",
+            "152. Defective sewing/machining/molding",
+            "154. Defective calking",
+            "155. Inadequate fastening",
+            "160. Came off ",
+            "161. Came loose",
+            "162. Peeling",
+            "166. Excess play",
+            "168. Poor welding/heat-sealing ",
+            "169. Poor plating ",
+            "181. Flooding",
+            "182. Fuel spit back ",
+            "305. Poor adjustment",
+            "310. Worn",
+            "340. Seized",
+            "342. Sticking",
+            "343. Scoreds",
+            "360. Poor/no spark",
+            "390. Missing part when unpacking",
+            "391. Shipping damage",
+            "999. Other",
+        ];
+        for(var i=0;i<defect_select.length;i++){
+        let op5 = document.createElement("option");
+        op5.text = defect_select[i];  
+        document.getElementById("defect").appendChild(op5);
+        }
+
+        var cost_select=[
+            "Please choose",
+            "repair"
+        ]
+        for(var i=0;i<cost_select.length;i++){
+        let op6 = document.createElement("option");
+        op6.text = cost_select[i];   
+        document.getElementById("cost").appendChild(op6);
+        }
+
     </script>    
 </body>
 </html>
