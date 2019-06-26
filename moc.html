@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -88,11 +86,48 @@
     .datepicker-days td:last-child {
         color: rgb(12, 135, 218);
     }
-    #modal{
+    
+    .modal-back{
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-color:rgba(0,0,0,.6);
         display:none;
-        width:300px;
-        height:600px;
-        background-color:rgb(255, 87, 87);
+        z-index:90;
+    }
+    .modal{
+        position:fixed;
+        top:15%;
+        left:25%;
+        width:50%;
+        height:450px;
+        z-index:100;
+        border:2px solid #444444;
+        font-family: 'Noto Serif', serif;
+        border-radius:8px;
+    }
+    .modal-title{
+        background: linear-gradient(to bottom, rgb(105, 245, 255), #dbf8ff);
+        text-align: center;
+        height:45px;
+        font-size:30px;
+        vertical-align:middle;
+        text-align: center;
+        border-bottom:1px solid #000;
+    }
+    .modal-contents{
+        background-color:rgb(255, 255, 255);
+        font-size:20px;
+        height:420px;
+        padding:20px;
+    }
+    #result{
+        margin-top:15px;
+        height:300px;
+        border:2px solid rgb(85, 85, 85);
+        border-radius:5px;
     }
 </style>
 <body>
@@ -366,6 +401,25 @@
                     </div>
                 </div>
             </form>
+            <button id="check">仮</button>
+            <p id="hello">こんにちは</p>
+        </div>
+
+        <!-- モーダル -->
+        <div class="modal-back"></div>
+        <div class="modal">
+            <div class="modal-title">
+                <p class="modal-title-text">Item#</p>
+            </div>
+            <div class="modal-contents">
+                <div class="row">
+                    <input type="text" class="form-control col-7 offset-2">
+                    <button class="btn btn-info">search</button>
+                </div>
+                <div id="result">
+
+                </div>
+            </div>
         </div>
     </div>
     <script type="text/javascript">
@@ -486,6 +540,25 @@
         document.getElementById("cost").appendChild(op6);
         }
 
+        $('#check').click(function(){
+            $(".modal, .modal-back").fadeIn();
+        });
+
+        //検索結果候補
+        var item_candidate = [
+            "A-3778",
+            "B-2020",
+            "C-1994"
+        ]
+        for(i=0;i<item_candidate.length;i++){
+            var input_child = document.createElement("input");
+            var label_child = document.createElement("label");
+            input_child.class = "form-check-input" 
+            input_child.type = "radio"
+            label_child.text = item_candidate[i]
+            document.getElementById("result").appendChild(input_child);
+            document.getElementById("result").appendChild(label_child);
+        }
     </script>    
 </body>
 </html>
