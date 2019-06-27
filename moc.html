@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -28,6 +29,13 @@
     }
     .navbar-nav{
         margin-left:10px;
+    }
+    .nav-link{
+        font-size: 20;
+    }
+    .icon{
+        font-size:15px;
+        margin-right:2px;
     }
     h3{
         text-align: center;
@@ -101,7 +109,7 @@
         position:fixed;
         top:15%;
         left:25%;
-        width:50%;
+        width:45%;
         height:450px;
         z-index:100;
         border:2px solid #444444;
@@ -123,11 +131,50 @@
         height:420px;
         padding:20px;
     }
+    #search-text{
+        margin: 0 auto;
+        width:300px;
+    }
     #result{
         margin-top:15px;
-        height:300px;
+        height:265px;
         border:2px solid rgb(85, 85, 85);
         border-radius:5px;
+        padding:5px;
+        overflow-y: scroll;
+        scrollbar-color: rebeccapurple green;
+        scrollbar-width: thin;
+    }
+    .target-area{
+        padding-left:20px;
+    }
+    #radios{
+        padding:0;
+    }
+    .target-area li{
+        list-style:none;
+        margin:10px 15px;
+    }
+    div::-webkit-scrollbar {
+      width: 12px;
+    }
+    div::-webkit-scrollbar-track {
+      background: rgb(240, 240, 240);
+      border: none;
+      border-radius: 10px;
+      box-shadow: inset 0 0 2px #777;
+    }
+    div::-webkit-scrollbar-thumb {
+      background: rgb(184, 184, 184);
+      border-radius: 10px;
+      box-shadow: none;
+    }
+    .btn_decide{
+        margin-top:10px;
+        text-align: center;
+    }
+    .hidden {
+    display: none
     }
 </style>
 <body>
@@ -137,12 +184,12 @@
         <button class ="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id ="navbarNav">
             <ul class="navbar-nav mr-auto ">
-                <li class="nav-item"><a class="nav-link" href="#">register</a></li>
-                <li class="nav-item active"><a class="nav-link" href="#">request</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">search</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="far fa-address-book icon"></i>register</a></li>
+                <li class="nav-item active"><a class="nav-link" href="#"><i class="fas fa-pencil-alt icon"></i>request</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-search icon"></i>search</a></li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#">UserName</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user icon"></i>UserName</a></li>
                 <li class="nav-item"><button class="btn btn-outline-info">Logout</button></li>
             </ul>
         </div>
@@ -207,7 +254,7 @@
                                     <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
                                         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +273,7 @@
                                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" />
                                         <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                         </div>
                                     </div>
                                 </div>
@@ -246,7 +293,7 @@
                                     <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker3" />
                                         <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
                                         </div>
                                     </div>
                                 </div>
@@ -413,14 +460,21 @@
             </div>
             <div class="modal-contents">
                 <div class="row">
-                    <input type="text" class="form-control col-7 offset-2">
-                    <button class="btn btn-info">search</button>
+                    <input type="text" class="form-control" id="search-text">
                 </div>
                 <div id="result">
-
+                    <ul class="target-area">
+                        <fieldset class="form-group">
+                            <div class="container">
+                                <div class="row" id="radios"></div>
+                            </div>
+                        </fieldset>
+                    </ul>
                 </div>
+                <div class="btn_decide"><button clasS="btn btn-info">decide</button></div>
             </div>
         </div>
+   
     </div>
     <script type="text/javascript">
         //日付表示
@@ -546,19 +600,70 @@
 
         //検索結果候補
         var item_candidate = [
-            "A-3778",
-            "B-2020",
-            "C-1994"
+            "A-377128434",
+            "B-202024234",
+            "C-199424242",
+            "A-377242847",
+            "B-202220548",
+            "C-192432467",
+            "A-233778435",
+            "B-523692020",
+            "C-192454874",
+            "A-312474578",
+            "B-202224570",
+            "C-195347594",
+            "A-337128434",
+            "D-202024234",
+            "D-199424242",
+            "D-377242847",
+            "D-202220548",
+            "D-192432467",
+            "D-233778435",
+            "D-523692020",
+            "D-192454874",
+            "D-372474578",
+            "E-202424570",
+            "E-195247594"
         ]
         for(i=0;i<item_candidate.length;i++){
+            var input_li = document.createElement("li");
+            input_li.class="col-6"
+            var form_check = document.createElement("div");
+            form_check.class = "form-check"
+            form_check.id = "form-check"
             var input_child = document.createElement("input");
             var label_child = document.createElement("label");
             input_child.class = "form-check-input" 
             input_child.type = "radio"
-            label_child.text = item_candidate[i]
-            document.getElementById("result").appendChild(input_child);
-            document.getElementById("result").appendChild(label_child);
+            input_child.name = "serch_result"
+            input_child.id = i
+            label_child.innerHTML = item_candidate[i];
+            label_child.for = i
+            form_check.appendChild(input_child);
+            form_check.appendChild(label_child);
+            input_li.appendChild(form_check);
+            document.getElementById("radios").appendChild(input_li)
         }
+
+        
+        searchWord = function(){
+        var searchText = $(this).val(), // 検索ボックスに入力された値
+            targetText;
+
+        $('.target-area li').each(function() {
+            targetText = $(this).text();
+
+            // 検索対象となるリストに入力された文字列が存在するかどうかを判断
+            if (targetText.indexOf(searchText) != -1) {
+            $(this).removeClass('hidden');
+            } else {
+            $(this).addClass('hidden');
+            }
+        });
+        };
+
+  // searchWordの実行
+  $('#search-text').on('input', searchWord);
     </script>    
 </body>
 </html>
